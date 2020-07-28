@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "open": "open -a 'Google Chrome' --args --disable-web-security --user-data-dir='~/Desktop/chromeTemp'",
     "serve": "npm run dev:h5",
     "build": "npm run build:h5",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
@@ -53,16 +54,16 @@
     "@dcloudio/uni-quickapp-webview": "^2.0.0-28320200727001",
     "@dcloudio/uni-stat": "^2.0.0-28320200727001",
     "cheerio": "^1.0.0-rc.3",
+    "colorui": "^1.0.0",
     "core-js": "^3.6.5",
     "flyio": "^0.6.2",
     "luch-request": "^3.0.4",
     "regenerator-runtime": "^0.12.1",
-    "sass": "^1.26.10",
-    "uview-ui": "^1.5.5",
     "vue": "^2.6.11",
     "vue-class-component": "^6.3.2",
     "vue-property-decorator": "^8.0.0",
-    "vuex": "^3.2.0"
+    "vuex": "^3.2.0",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.2.0",
@@ -76,6 +77,7 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-28320200727001",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-28320200727001",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-28320200727001",
+    "@types/cheerio": "^0.22.21",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-typescript": "*",
     "@vue/cli-service": "~4.4.0",
@@ -85,7 +87,6 @@
     "mini-types": "*",
     "miniprogram-api-typings": "*",
     "postcss-comment": "^2.0.0",
-    "sass-loader": "^9.0.2",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.6.11"
   },
