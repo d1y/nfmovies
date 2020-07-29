@@ -14,5 +14,20 @@ export interface indexPageDataInterface {
    * `hot` 轮播的 `index`
    */
   currentHotIndex: number
+
+  /**
+   * 搜索框提示内容
+   */
+  pyText: string
+
+  /**
+   * 搜索内容
+   */
+  searchVal: string
+
+  /**
+   * 滚动长度
+   */
+  scrollTop: number
   
 }
