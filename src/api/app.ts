@@ -32,3 +32,13 @@ export const getDetail = async (url: string): Promise<pageDetailApiData> => {
   }
   
 }
+
+export const getVideoURL = async (api: string): Promise<string> => {
+  try {
+    const res = await axios.get(api)
+    const embed = middleware.videoEmbedURL(res.data)
+    return embed
+  } catch (error) {
+    throw new Error(error)
+  }
+}

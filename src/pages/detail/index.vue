@@ -1,9 +1,9 @@
 <template>
 	<scroll-view :scroll-y="true">
-    <video :style="videoEleStyle" :src="videoSrc" :poster="coverPoster"></video>
+    <video  custom-cache="false" :page-gesture="true" :enable-progress-gesture="true" object-fit="cover" :enable-play-gesture="true" :vslide-gesture="true" :vslide-gesture-in-fullscreen="true" :controls="true" :show-center-play-btn="true" :style="videoEleStyle" :src="videoSrc" :poster="coverPoster"></video>
     <view class="padding-lg flex">
       <view class="text-xl margin-right-sm">{{ title }}</view>
-      <view class="cu-tag bg-cyan radius" v-if="data.score">{{ data.score }}</view>
+      <view class="cu-tag bg-cyan radius" v-if="data && data.score">{{ data.score }}</view>
     </view>
     <view class="player" v-if="data && data.mirrors">
       <scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
@@ -22,6 +22,7 @@
           <view
             class="shadow bg-cyan padding-sm radius dark-remove flex align-center justify-center"
             :style="{ position: `relative`, height: `100%` }"
+            @tap="handleClickPv(item['api'])"
           >
             {{ item['title'] }}
           </view>
@@ -35,7 +36,7 @@
 import Vue from 'vue'
 import { detailPageDataInterface } from '@/interface/pages'
 import csstype from 'csstype'
-import { getDetail } from '@/api/app'
+import { getDetail, getVideoURL } from '@/api/app'
 import { pageDetailApiData, pageDataApiDataPv, pageDataApiDataPvItem } from '@/interface'
 export default Vue.extend({
 	data(): detailPageDataInterface {
@@ -86,7 +87,7 @@ export default Vue.extend({
   },
   onLoad(options: any) {
     const { title, id } = options
-    if (id) this.getData(id)
+    this.getData(id || "54430")
     if (title) uni.setNavigationBarTitle({ title })
   },
   methods: {
@@ -98,6 +99,14 @@ export default Vue.extend({
       try {
         const data = await getDetail(id)
         this.data = data
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
+    async handleClickPv(api: string) {
+      try {
+        const url = await getVideoURL(api) 
+        this.videoSrc = url
       } catch (error) {
         throw new Error(error)
       }

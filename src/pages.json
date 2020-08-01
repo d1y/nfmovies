@@ -19,5 +19,18 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"condition": {
+		"current": 1,
+		"list": [
+			{
+				"name": "首页",
+				"path": "pages/index/index"
+			},
+			{
+				"name": "详情",
+				"path": "pages/detail/index"
+			}
+		]
 	}
 }

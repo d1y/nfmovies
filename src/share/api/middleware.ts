@@ -99,3 +99,35 @@ export const detailData = async (str: string): Promise<pageDetailApiData>=> {
     mirrors
   }
 }
+
+/**
+ * 内镶 `url` 的接口
+ */
+export const videoEmbedURL = (str: string): string => {
+  const $ = cheerio.load(str)
+  let js = $('.embed-responsive.clearfix script').html() || ""
+  if (js) {
+    js += `function echo() { return now }; echo()`
+  }
+  try {
+    const now = eval(js)
+    return now
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+/**
+ * 获取真实的 `url`
+ */
+export const videoRawURL = (str: string): string => {
+  const $ = cheerio.load(str)
+  let ctx = $($('script[type]')[2]).html() || ""
+  ctx += `function echo() { return main }; echo()`
+  try {
+    const now = eval(ctx)
+    return now
+  } catch (error) {
+    throw new Error(error)
+  }
+}

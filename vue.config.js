@@ -1,5 +1,8 @@
 module.exports = {
   transpileDependencies: [
-    'luch-request'
+    'luch-request',
+    "url-parse",
+    "normalize-url",
+    "url-regex",
   ]
 }
