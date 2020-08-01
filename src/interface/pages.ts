@@ -1,4 +1,21 @@
-import { pageIndexApiData } from '.';
+import { pageIndexApiData, pageDetailApiData } from '.';
+
+/**
+ * 详情页接口
+ */
+export interface detailPageDataInterface {
+  /**
+   * 视频 `url`
+   */
+  videoSrc: string
+
+  TabCur: number
+
+  scrollLeft: number
+
+
+  data: pageDetailApiData | null
+}
 
 /**
  * 首页 `data` 类型

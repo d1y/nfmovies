@@ -75,3 +75,61 @@ export interface pageIndexApiData {
   cards: pageIndexApiCardItemData[]
 
 }
+
+/**
+ * 所有播放镜像
+ */
+export interface pageDataApiDataMirror {
+  /**
+   * 标题
+   */
+  title: string
+  /**
+   * `hash`
+   */
+  hash: string
+}
+
+export interface pageDataApiDataPv {
+  /**
+   * hash
+   */
+  hash: string
+  /**
+   * 分集列表
+   */
+  lists: pageDataApiDataPvItem[]
+}
+
+/**
+ * 分集
+ */
+export interface pageDataApiDataPvItem {
+  /**
+   * 标题
+   */
+  title: string
+  /**
+   * `api` 接口
+   */
+  api: string
+}
+
+export interface pageDetailApiData {
+  /**
+   * 电影标题
+   */
+  title: string
+  /**
+   * 评分
+   */
+  score: string
+  /**
+   * 镜像
+   */
+  mirrors: pageDataApiDataMirror[]
+  /**
+   * 所有分集
+   */
+  pvs: pageDataApiDataPv[]
+}

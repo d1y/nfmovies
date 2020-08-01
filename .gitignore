@@ -22,3 +22,5 @@ yarn.lock
 *.njsproj
 *.sln
 *.sw*
+
+local

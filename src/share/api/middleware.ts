@@ -1,5 +1,5 @@
 import cheerio from 'cheerio'
-import { pageIndexApiData, baseSingleMovieInterface, pageIndexApiCardItemData } from '@/interface';
+import { pageIndexApiData, baseSingleMovieInterface, pageIndexApiCardItemData, pageDetailApiData, pageDataApiDataPv } from '@/interface';
 import { createFullImgURL } from '@/api/utils';
 
 /**
@@ -62,4 +62,40 @@ export const indexData = (str: string): pageIndexApiData => {
     result.cards = cards
   }
   return result
+}
+
+export const detailData = async (str: string): Promise<pageDetailApiData>=> {
+  const $ = cheerio.load(str)
+  const title = $('.myui-vodlist__thumb.img-md-220.img-xs-130.picture').attr('title') || ""
+  const score = $('.branch').text().trim()
+  const temps: CheerioElement[] = Array.from($('.nav.nav-tabs.active'))
+  const now = temps[0]
+  const videos = Array.from($(now).find('a[data-toggle]'))
+  let pvs: pageDataApiDataPv[] = []
+  const mirrors = videos.map(item=> {
+    const title = $(item).text().trim()
+    const hash = $(item).attr('href') || ""
+    const lists = Array.from($(hash).find('ul li')).map(item=> {
+      const title = $(item).find('a').attr('title') || ""
+      const api = $(item).find('a').attr('href') || ""
+      return {
+        title,
+        api
+      }
+    })
+    pvs.push({
+      lists,
+      hash
+    })
+    return {
+      title,
+      hash
+    }
+  })
+  return {
+    title,
+    score,
+    pvs,
+    mirrors
+  }
 }

@@ -16,3 +16,11 @@ export const createFullImgURL = (path: string): string => {
 export const createDetailIDApi = (id: string)=> {
   return `/detail/?${ id }.html`
 }
+
+/**
+ * 创建视频 `id`
+ * @param id `id`
+ */
+export const createVideoIDApi = (id: string)=> {
+  return `/video/?${ id }.html`
+}
