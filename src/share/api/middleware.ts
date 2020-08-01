@@ -1,5 +1,5 @@
 import cheerio from 'cheerio'
-import { pageIndexApiData, baseSingleMovieInterface, pageIndexApiCardItemData, pageDetailApiData, pageDataApiDataPv } from '@/interface';
+import { pageIndexApiData, baseSingleMovieInterface, pageIndexApiCardItemData, pageDetailApiData, pageDataApiDataPv, pageSearchApiData } from '@/interface';
 import { createFullImgURL } from '@/api/utils';
 
 /**
@@ -64,6 +64,9 @@ export const indexData = (str: string): pageIndexApiData => {
   return result
 }
 
+/**
+ * 详情
+ */
 export const detailData = async (str: string): Promise<pageDetailApiData>=> {
   const $ = cheerio.load(str)
   const title = $('.myui-vodlist__thumb.img-md-220.img-xs-130.picture').attr('title') || ""
@@ -129,5 +132,25 @@ export const videoRawURL = (str: string): string => {
     return now
   } catch (error) {
     throw new Error(error)
+  }
+}
+
+/**
+ * 搜索的数据
+ */
+export const searchData = (str: string): pageSearchApiData => {
+  const $ = cheerio.load(str)
+  const lists = Array.from($('ul.myui-vodlist__media.clearfix li')).map(item => dealWithCardItemData(item))
+  const page = $('.myui-page.text-center.clearfix')
+  const pageText = page.find('li.visible-xs').text().trim() // 1/7
+  const pageCtx = pageText.split('/')
+  const current = +pageCtx[0]
+  const total = +pageCtx[1]
+  const isNext = current < total
+  return {
+    current,
+    total,
+    isNext,
+    lists
   }
 }

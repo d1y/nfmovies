@@ -45,6 +45,7 @@ export const getVideoURL = async (api: string): Promise<string> => {
   }
 }
 
+export const getSearch = async (keyword: string): Promise<pageSearchApiData> => {
   try {
     const api = creatSearchApi(keyword)
     const res = await axios.get(api)
