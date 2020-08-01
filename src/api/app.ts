@@ -1,7 +1,7 @@
 import axios from '@/utils/axios'
 import * as middleware from '@/share/api/middleware'
-import { pageIndexApiData, pageDetailApiData } from '@/interface'
-import { createDetailIDApi } from './utils'
+import { pageIndexApiData, pageDetailApiData, pageSearchApiData } from '@/interface'
+import { createDetailIDApi, creatSearchApi } from './utils'
 
 /**
  * 获取首页地址
@@ -37,7 +37,18 @@ export const getVideoURL = async (api: string): Promise<string> => {
   try {
     const res = await axios.get(api)
     const embed = middleware.videoEmbedURL(res.data)
-    return embed
+    const checkHttpReg = /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/
+    if (checkHttpReg.test(embed)) return embed
+    return ""
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+  try {
+    const api = creatSearchApi(keyword)
+    const res = await axios.get(api)
+    return middleware.searchData(res.data)
   } catch (error) {
     throw new Error(error)
   }

@@ -18,9 +18,29 @@ export const createDetailIDApi = (id: string)=> {
 }
 
 /**
+ * 解密详情页 `id`
+ * @param url `url`
+ */
+export const decodeDetailIDApi = (url: string): string => {
+  try {
+    return url.split('/')[2].split('.')[0].slice(1)
+  } catch (error) {
+    return ""
+  }
+}
+
+/**
  * 创建视频 `id`
  * @param id `id`
  */
 export const createVideoIDApi = (id: string)=> {
   return `/video/?${ id }.html`
+}
+
+/**
+ * 创建搜索接口
+ * @param keyword 搜索关键字
+ */
+export const creatSearchApi = (keyword: string)=> {
+  return `/search.php?searchword=${ keyword }`
 }

@@ -133,3 +133,20 @@ export interface pageDetailApiData {
    */
   pvs: pageDataApiDataPv[]
 }
+
+export interface pageSearchApiData {
+  /**
+   * 当前
+   */
+  current: number
+  /**
+   * 所有
+   */
+  total: number
+  /**
+   * is next
+   */
+  isNext: boolean
+  
+  lists: baseSingleMovieInterface[]
+}

@@ -17,7 +17,7 @@
 			<swiper-item v-for="(item,index) in data.hots" :key="index" :class=" currentHotIndex == index ?'cur':''">
 				<view class="swiper-item bg-mask" :style="{
 					backgroundImage: `url(${ item.cover })`
-				}">
+				}" @tap="handleClickBox({ item })">
 					<view class="banner-title">
 						{{ item.title }}
 					</view>
@@ -30,7 +30,7 @@
 
 		<view class="wrapper">
 			<block v-for="(item, index) in cards" :key="index">
-				<card :title="item.title" :showMore="item.api" :data="item.lists" />
+				<card @click="handleClickBox" :title="item.title" :showMore="item.api" :data="item.lists" />
 			</block>
 		</view>
 
@@ -51,6 +51,7 @@ import { getIndxData } from '@/api/app'
 import { indexPageDataInterface } from '@/interface/pages'
 import { baseSingleMovieInterface, pageIndexApiCardItemData } from '@/interface'
 import { mapState, mapMutations } from 'vuex'
+import { decodeDetailIDApi } from '@/api/utils'
 export default Vue.extend({
 	components: {
 		Card,
@@ -106,6 +107,11 @@ export default Vue.extend({
 		...mapMutations('cache', [
 			'CHANGE_INDEX_DATA'
 		]),
+		handleClickBox(ctx: any) {
+			const { item } = ctx
+			const id = decodeDetailIDApi(item['api'])
+			uni.navigateTo({ url: `/pages/detail/index?id=${id}` })
+		},
 		handleChangeHotIndex(e: any) {
 			const { current } = e.detail
 			this.currentHotIndex = current

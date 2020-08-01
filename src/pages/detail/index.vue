@@ -106,6 +106,10 @@ export default Vue.extend({
     async handleClickPv(api: string) {
       try {
         const url = await getVideoURL(api) 
+        if (!url) uni.showToast({
+          title: "该源貌似不可用",
+          icon: 'none'
+        })
         this.videoSrc = url
       } catch (error) {
         throw new Error(error)

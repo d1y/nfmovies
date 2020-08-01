@@ -74,17 +74,6 @@ export default {
       default: false
     }
   },
-  data() {
-    return {
-      currentData: {
-        title: '',
-        cover: '',
-        author: '',
-        desc: ``,
-      },
-      currentModalFlag: false
-    }
-  },
   computed: {
     colStyle() {
       const col = "lg"
@@ -108,17 +97,6 @@ export default {
   },
   methods: {
     handleClickItem(flag, item, index) {
-      if (flag) {
-        // TODO 预览内容
-        this.currentData = item
-        this.currentModalFlag = true
-      } else {
-        // TODO 跳转
-        const { id } = item
-        router.push(`detail/index`, {
-          id
-        })
-      }
       this.$emit('click', {
         flag,
         item,

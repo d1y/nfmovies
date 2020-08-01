@@ -1,4 +1,4 @@
-import { pageIndexApiData, pageDetailApiData } from '.';
+import { pageIndexApiData, pageDetailApiData, pageSearchApiData } from '.';
 
 /**
  * 详情页接口
@@ -47,4 +47,18 @@ export interface indexPageDataInterface {
    */
   scrollTop: number
   
+}
+
+/**
+ * 搜索
+ */
+export interface searchPageDataInterface {
+  /**
+   * 搜索的 `key`
+   */
+  searchKey: string
+  /**
+   * 数据
+   */
+  data: pageSearchApiData | null
 }
