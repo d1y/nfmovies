@@ -1,4 +1,4 @@
-![](./design/appicon.png)
+<img src="./design/appicon.png" width="120" />
 
 # nfmovies
 

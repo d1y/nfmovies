@@ -60,5 +60,5 @@ export interface searchPageDataInterface {
   /**
    * 数据
    */
-  data: pageSearchApiData | null
+  data: pageSearchApiData
 }

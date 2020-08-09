@@ -9,6 +9,7 @@
           :placeholder="pyText"
           v-model="searchVal"
           :maxlength="24"
+					@confirm="handleConfirmSearch"
         />
 			</view>
 		</cu-topbar>
@@ -107,6 +108,11 @@ export default Vue.extend({
 		...mapMutations('cache', [
 			'CHANGE_INDEX_DATA'
 		]),
+		handleConfirmSearch() {
+			const word = this.searchVal.trim()
+			if (!word) return
+			uni.navigateTo({ url: `/pages/search/index?keyword=${ word }` })
+		},
 		handleClickBox(ctx: any) {
 			const { item } = ctx
 			const id = decodeDetailIDApi(item['api'])

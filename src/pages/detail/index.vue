@@ -1,6 +1,6 @@
 <template>
 	<scroll-view :scroll-y="true">
-    <video  custom-cache="false" :page-gesture="true" :enable-progress-gesture="true" object-fit="cover" :enable-play-gesture="true" :vslide-gesture="true" :vslide-gesture-in-fullscreen="true" :controls="true" :show-center-play-btn="true" :style="videoEleStyle" :src="videoSrc" :poster="coverPoster"></video>
+    <video v-if="videoSrc" custom-cache="false" :page-gesture="true" :enable-progress-gesture="true" object-fit="cover" :enable-play-gesture="true" :vslide-gesture="true" :vslide-gesture-in-fullscreen="true" :controls="true" :show-center-play-btn="true" :style="videoEleStyle" :src="videoSrc" :poster="coverPoster"></video>
     <view class="padding-lg flex">
       <view class="text-xl margin-right-sm">{{ title }}</view>
       <view class="cu-tag bg-cyan radius" v-if="data && data.score">{{ data.score }}</view>
@@ -83,6 +83,11 @@ export default Vue.extend({
       const now = data.pvs.find(item=> item.hash == currHash)
       if (now) return now.lists
       return []
+    }
+  },
+  watch: {
+    videoSrc(newVal) {
+      uni.showToast({ title: "已重新设置播放地址" })
     }
   },
   onLoad(options: any) {

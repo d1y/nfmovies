@@ -147,10 +147,12 @@ export const searchData = (str: string): pageSearchApiData => {
   const current = +pageCtx[0]
   const total = +pageCtx[1]
   const isNext = current < total
+  const next = current + 1
   return {
     current,
     total,
     isNext,
-    lists
+    lists,
+    next,
   }
 }

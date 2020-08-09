@@ -13,6 +13,13 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": true
 			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": true
+			}
 		}
 	],
 	"globalStyle": {

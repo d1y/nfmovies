@@ -135,18 +135,30 @@ export interface pageDetailApiData {
 }
 
 export interface pageSearchApiData {
+
   /**
    * 当前
    */
   current: number
+
+  /**
+   * 下一页
+   */
+  next: number
+
   /**
    * 所有
    */
   total: number
+
   /**
-   * is next
+   * 是否有下一页
    */
   isNext: boolean
   
+  /**
+   * 数据
+   */
   lists: baseSingleMovieInterface[]
+  
 }

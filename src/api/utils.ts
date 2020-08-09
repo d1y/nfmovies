@@ -40,7 +40,8 @@ export const createVideoIDApi = (id: string)=> {
 /**
  * 创建搜索接口
  * @param keyword 搜索关键字
+ * @param page 分页
  */
-export const creatSearchApi = (keyword: string)=> {
-  return `/search.php?searchword=${ keyword }`
+export const creatSearchApi = (keyword: string, page: number = 1)=> {
+  return `/search.php?page=${ page }&searchword=${ keyword }`
 }
